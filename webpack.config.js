@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlPlugin({
-      title: 'BabylonJS Starter',
+      title: 'BabylonJS Experiments',
     }),
   ],
   mode: 'development',
