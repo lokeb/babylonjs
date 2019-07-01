@@ -1,10 +1,10 @@
 {
-  "name": "preact_starter",
+  "name": "babylonjs",
   "version": "1.0.0",
-  "description": "PReact Skeleton with Webpack build system",
+  "description": "BabylonJS Experiments",
   "repository": "git@github.com:lokeb/babylonjs.git",
   "author": "Loknath Bharti",
-  "license": "GNU-3.0",
+  "license": "GPL-3.0",
   "private": true,
   "dependencies": {
     "babylonjs": "^4.0.3",
