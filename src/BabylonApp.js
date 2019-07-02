@@ -1,7 +1,11 @@
 import React from 'react'
 import * as BABYLON from 'babylonjs'
 import { Engine, Scene, ArcRotateCamera, Vector3 } from 'babylonjs'
+
 import './babylonApp.scss'
+
+import Grass from './grass.png'
+import Bump from './grass_bump2.png'
 
 class BabylonApp extends React.Component {
   constructor(props) {
@@ -36,7 +40,10 @@ class BabylonApp extends React.Component {
     let material = new BABYLON.StandardMaterial("mat1", this.scene)
     material.diffuseColor = new BABYLON.Color3(0.6, 0.6, 1)
     material.specularColor = new BABYLON.Color3(0.2, 0.2, 0.6)
-    material.ambientColor = new BABYLON.Color3(0.2, 0, 0)
+    material.ambientColor = new BABYLON.Color3(0.8, 0.6, 0.6)
+    material.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0.5)
+    material.diffuseTexture = new BABYLON.Texture(Grass, this.scene)
+    material.bumpTexture = new BABYLON.Texture(Bump, this.scene)
     sphere.material = material
 
     let boxMat = new BABYLON.StandardMaterial('boxMat', this.scene)
