@@ -1,11 +1,11 @@
 import React from 'react'
 import * as BABYLON from 'babylonjs'
-import { Engine, Scene, ArcRotateCamera, Vector3 } from 'babylonjs'
+import { Engine, Scene, ArcRotateCamera, Vector3, AnaglyphArcRotateCamera, TGATools } from 'babylonjs'
 
 import './babylonApp.scss'
 
-import Grass from './grass.png'
-import Bump from './grass_bump2.png'
+import Grass from './texture/grass.png'
+import Bump from './texture/NormalMap.png'
 
 class BabylonApp extends React.Component {
   constructor(props) {
@@ -17,8 +17,9 @@ class BabylonApp extends React.Component {
     this.canvas = this.canvasRef.current
     this.engine = new Engine(this.canvas)
     this.scene = new Scene(this.engine)
+
     let camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, Vector3.Zero(), this.scene)
-    camera.attachControl(this.canvas, true)
+    camera.attachControl(this.canvas, true, false)
 
     let light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), this.scene)
     let light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), this.scene)
@@ -37,13 +38,16 @@ class BabylonApp extends React.Component {
     // let lines = BABYLON.MeshBuilder.CreateDashedLines("lines", {points, dashSize: 0.5}, this.scene)
 
     this.scene.ambientColor = new BABYLON.Color3(0.5, 0, 0.5)
+    this.scene.clearColor = new BABYLON.Color4(0, 0.2, 0.4, 0.8)
+
     let material = new BABYLON.StandardMaterial("mat1", this.scene)
     material.diffuseColor = new BABYLON.Color3(0.6, 0.6, 1)
     material.specularColor = new BABYLON.Color3(0.2, 0.2, 0.6)
-    material.ambientColor = new BABYLON.Color3(0.8, 0.6, 0.6)
+    material.ambientColor = new BABYLON.Color3(0.2, 1, 0.2)
     material.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0.5)
     material.diffuseTexture = new BABYLON.Texture(Grass, this.scene)
     material.bumpTexture = new BABYLON.Texture(Bump, this.scene)
+
     sphere.material = material
 
     let boxMat = new BABYLON.StandardMaterial('boxMat', this.scene)
@@ -54,6 +58,39 @@ class BabylonApp extends React.Component {
     boxMat.alpha = 0.7
 
     box.material = boxMat
+
+    let animationSphere = new BABYLON.Animation("anim1", "rotation", 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE)
+    let keysSphere = [
+      {
+        frame: 0,
+        value: new BABYLON.Vector3(0, 0, 0),
+      },
+      {
+        frame: 30,
+        value: sphere.rotation.add(new BABYLON.Vector3(0.2, 0.2, 0.2)),
+      }
+    ]
+
+    animationSphere.setKeys(keysSphere)
+
+    sphere.animations = [animationSphere]
+    this.scene.beginAnimation(sphere, 0, 30, true)
+
+    let animationBox = new BABYLON.Animation("anim2", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE)
+    let keysBox = [
+      {
+        frame: 0,
+        value: 0
+      },
+      {
+        frame: 30,
+        value: Math.PI/2
+      }
+    ]
+    animationBox.setKeys(keysBox)
+
+    box.animations = [animationBox]
+    this.scene.beginAnimation(box, 0, 30, true)
 
     this.engine.runRenderLoop(() => {
       this.scene.render();
