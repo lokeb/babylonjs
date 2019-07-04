@@ -2,6 +2,8 @@ import React from 'react'
 import * as BABYLON from 'babylonjs'
 import { Engine, Scene, ArcRotateCamera, Vector3, AnaglyphArcRotateCamera, TGATools } from 'babylonjs'
 
+import Skybox from './Skybox'
+
 import './babylonApp.scss'
 
 import Grass from './texture/grass.png'
@@ -43,6 +45,8 @@ class BabylonApp extends React.Component {
 
     this.scene.ambientColor = new BABYLON.Color3(0.5, 0, 0.5)
     this.scene.clearColor = new BABYLON.Color4(0, 0.2, 0.4, 0.8)
+
+    let skybox = Skybox(this.scene)
 
     let material = new BABYLON.StandardMaterial("mat1", this.scene)
     material.diffuseColor = new BABYLON.Color3(0.6, 0.6, 1)
