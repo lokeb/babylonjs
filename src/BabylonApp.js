@@ -100,8 +100,17 @@ class BabylonApp extends React.Component {
     box.animations = [animationBox]
     this.scene.beginAnimation(box, 0, 30, true)
 
+    this.scene.gravity = new BABYLON.Vector3(0, -9.8, 0)
+    this.scene.collisionsEnabled = true
+
+    camera.collisionRadius = new BABYLON.Vector3(1, 1, 1)
+    camera.checkCollisions = true
+
+    sphere.checkCollisions = true
+    box.checkCollisions = true
+
     this.engine.runRenderLoop(() => {
-      this.scene.render();
+      this.scene.render()
     })
 
     window.addEventListener("resize", this.updateDimensions)
