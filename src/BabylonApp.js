@@ -15,7 +15,11 @@ class BabylonApp extends React.Component {
 
   componentDidMount() {
     this.canvas = this.canvasRef.current
-    this.engine = new Engine(this.canvas)
+    this.engine = new Engine(this.canvas, true, {
+      deterministicLockstep: true,
+      lockstepMaxSteps: 4
+    })
+
     this.scene = new Scene(this.engine)
 
     let camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, Vector3.Zero(), this.scene)
@@ -59,7 +63,7 @@ class BabylonApp extends React.Component {
 
     box.material = boxMat
 
-    let animationSphere = new BABYLON.Animation("anim1", "rotation", 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE)
+    let animationSphere = new BABYLON.Animation("anim1", "rotation", 30, BABYLON.Animation.ANIMATIONTYPE_VECTOR3, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE, true)
     let keysSphere = [
       {
         frame: 0,
@@ -76,7 +80,7 @@ class BabylonApp extends React.Component {
     sphere.animations = [animationSphere]
     this.scene.beginAnimation(sphere, 0, 30, true)
 
-    let animationBox = new BABYLON.Animation("anim2", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE)
+    let animationBox = new BABYLON.Animation("anim2", "rotation.y", 30, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_RELATIVE, true)
     let keysBox = [
       {
         frame: 0,
