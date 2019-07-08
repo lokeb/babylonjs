@@ -31,6 +31,6 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open --host 0.0.0.0 --public 8080-dot-5355259-dot-devshell.appspot.com:8080"
   }
 }
