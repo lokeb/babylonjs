@@ -17,8 +17,8 @@ const Particles = (scene, emitter) => {
   system.color2 = new BABYLON.Color4(0.2, 0.5, 1.0, 0.8)
   system.colorDead = new BABYLON.Color4(0.6, 0, 0.2, 0.0)
 
-  system.minSize = 0.2
-  system.maxSize = 1
+  system.minSize = 0.01
+  system.maxSize = 0.5
 
   system.minLifeTime = 0.3
   system.maxLifeTime = 1.5
