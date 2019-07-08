@@ -1,9 +1,10 @@
 import React from 'react'
 import * as BABYLON from 'babylonjs'
-import { Engine, Scene, ArcRotateCamera, Vector3, AnaglyphArcRotateCamera, TGATools } from 'babylonjs'
+import { Engine, Scene, ArcRotateCamera, Vector3, AnaglyphArcRotateCamera, TGATools, ParticlesOptimization } from 'babylonjs'
 
 import Skybox from './Skybox'
 import RangerAnim from './RangerAnimSprite'
+import Particles from './Particles'
 
 import './babylonApp.scss'
 
@@ -111,6 +112,8 @@ class BabylonApp extends React.Component {
     box.checkCollisions = true
 
     let anim = RangerAnim(this.scene)
+
+    let partcles = Particles(this.scene, sphere)
 
     this.engine.runRenderLoop(() => {
       this.scene.render()
