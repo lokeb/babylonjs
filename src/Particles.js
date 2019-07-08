@@ -8,8 +8,8 @@ const Particles = (scene, emitter) => {
   system.emitter = emitter
   system.particleTexture = new BABYLON.Texture(Flare, scene)
 
-  system.minEmitBox = new BABYLON.Vector3(-1, -1, -1)
-  system.maxEmitBox = new BABYLON.Vector3(1, 1, 1)
+  system.minEmitBox = new BABYLON.Vector3(-1, 0, -1)
+  system.maxEmitBox = new BABYLON.Vector3(1, 0, 1)
 
   system.emitRate = 500
 
@@ -23,7 +23,7 @@ const Particles = (scene, emitter) => {
   system.minLifeTime = 0.3
   system.maxLifeTime = 1.5
 
-  system.gravity = new BABYLON.Vector3(0, -9.8, 0)
+  system.gravity = new BABYLON.Vector3(0, 9.8, 0)
 
   system.direction1 = new BABYLON.Vector3(-7, 8, 3)
   system.direction2 = new BABYLON.Vector3(7, 8, -3)
