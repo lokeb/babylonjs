@@ -5,6 +5,7 @@ import { Engine, Scene, ArcRotateCamera, Vector3, AnaglyphArcRotateCamera, TGATo
 import Skybox from './Skybox'
 import RangerAnim from './RangerAnimSprite'
 import Particles from './Particles'
+import Earth from './Earth'
 
 import './babylonApp.scss'
 
@@ -114,6 +115,21 @@ class BabylonApp extends React.Component {
     let anim = RangerAnim(this.scene)
 
     let partcles = Particles(this.scene, sphere)
+
+    /* 
+    // Fog Mode Start
+    this.scene.fogMode = BABYLON.Scene.FOGMODE_EXP
+
+    this.scene.fogDensity = 0.1
+    this.scene.fogStart = 2.0
+    this.scene.fogEnd = 10.0
+
+    this.scene.fogColor = new BABYLON.Color3(0.9, 0.9, 0.85)
+
+    // Fog Mode End
+    */
+
+    let earth = Earth(this.scene)
 
     this.engine.runRenderLoop(() => {
       this.scene.render()

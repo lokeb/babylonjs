@@ -37,6 +37,17 @@ const Particles = (scene, emitter) => {
 
   system.blendMode = BABYLON.ParticleSystem.BLENDMODE_ONEONE
 
+  system.translationPivot = new BABYLON.Vector2(0, 1)
+  system.isBillboardBased = true
+
+  let noiseTexture = new BABYLON.NoiseProceduralTexture("perlin", 256, scene)
+  noiseTexture.animationSpeedFactor = 5
+  noiseTexture.persistence = 2
+  noiseTexture.brightness = 0.5
+  noiseTexture.octaves = 2
+  system.noiseTexture = noiseTexture
+  system.noiseStrength = new BABYLON.Vector3(1, 1, 1)
+
   system.start()
   return system
 }
