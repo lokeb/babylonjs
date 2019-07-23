@@ -31,7 +31,12 @@ class BabylonApp extends React.Component {
     this.scene.gravity = new BABYLON.Vector3(0, -9.8, 0)
     this.scene.collisionsEnabled = true
 
-    let camera = new ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, Vector3.Zero(), this.scene)
+    let camera = new ArcRotateCamera("Camera", Math.PI / 2, 0, 2, Vector3.Zero(), this.scene)
+    camera.lowerBetaLimit = 0.1;
+	  camera.upperBetaLimit = (Math.PI / 2) * 0.9;
+	  camera.lowerRadiusLimit = 30;
+	  camera.upperRadiusLimit = 150;
+
     camera.attachControl(this.canvas, true, false)
     camera.collisionRadius = new BABYLON.Vector3(1, 1, 1)
     camera.checkCollisions = true

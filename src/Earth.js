@@ -6,7 +6,7 @@ const Earth = scene => {
   let material = new BABYLON.StandardMaterial("surface", scene)
   material.diffuseTexture = new BABYLON.Texture(EarthSurface)
 
-  let surface = BABYLON.Mesh.CreateGroundFromHeightMap("heightMap", EarthHeightMap, 200, 200, 250, 0, 10, scene)
+  let surface = BABYLON.Mesh.CreateGroundFromHeightMap("heightMap", EarthHeightMap, 100, 50, 500, 0.1, 4, scene)
   surface.material = material
 
   return surface
